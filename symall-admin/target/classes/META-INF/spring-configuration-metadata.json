@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "name": "dynamic",
+      "type": "com.yima.datasource.properties.DynamicDataSourceProperties",
+      "sourceType": "com.yima.datasource.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "guli.jwt",
+      "type": "com.yima.modules.app.utils.JwtUtils",
+      "sourceType": "com.yima.modules.app.utils.JwtUtils"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dynamic.datasource",
+      "type": "java.util.Map<java.lang.String,com.yima.datasource.properties.DataSourceProperties>",
+      "sourceType": "com.yima.datasource.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "guli.jwt.expire",
+      "type": "java.lang.Long",
+      "sourceType": "com.yima.modules.app.utils.JwtUtils",
+      "defaultValue": 0
+    },
+    {
+      "name": "guli.jwt.header",
+      "type": "java.lang.String",
+      "sourceType": "com.yima.modules.app.utils.JwtUtils"
+    },
+    {
+      "name": "guli.jwt.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.yima.modules.app.utils.JwtUtils"
+    }
+  ],
+  "hints": []
+}
