@@ -1,9 +1,13 @@
 package com.yima.symall.sms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yima.symall.sms.entity.SkuBoundsEntity;
 import com.yima.core.bean.PageVo;
 import com.yima.core.bean.QueryCondition;
+import com.yima.symall.sms.entity.SkuBoundsEntity;
+import com.yima.symall.sms.vo.SaleVO;
+import com.yima.symall.sms.vo.SkuSaleVO;
+
+import java.util.List;
 
 
 /**
@@ -16,5 +20,9 @@ import com.yima.core.bean.QueryCondition;
 public interface SkuBoundsService extends IService<SkuBoundsEntity> {
 
     PageVo queryPage(QueryCondition params);
+
+    void saveSale(SkuSaleVO skuSaleVO);
+
+    List<SaleVO> querySalesBySkuId(Long skuId);
 }
 

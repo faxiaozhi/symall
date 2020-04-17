@@ -1,22 +1,21 @@
 package com.yima.symall.wms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yima.core.bean.PageVo;
 import com.yima.core.bean.QueryCondition;
 import com.yima.core.bean.Resp;
+import com.yima.symall.wms.entity.WareSkuEntity;
+import com.yima.symall.wms.service.WareSkuService;
+import com.yima.symall.wms.vo.SkuLockVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.yima.symall.wms.entity.WareSkuEntity;
-import com.yima.symall.wms.service.WareSkuService;
-
-
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -33,6 +32,22 @@ public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
 
+    @PostMapping
+    public Resp<Object> checkAndLockStore(@RequestBody List<SkuLockVO> skuLockVOS){
+
+        String msg = this.wareSkuService.checkAndLockStore(skuLockVOS);
+        if (StringUtils.isEmpty(msg)) {
+            return Resp.ok(null);
+        }
+        return Resp.fail(msg);
+    }
+
+    @GetMapping("{skuId}")
+    public Resp<List<WareSkuEntity>> queryWareSkusBySkuId(@PathVariable("skuId")Long skuId){
+
+        List<WareSkuEntity> wareSkuEntities = wareSkuService.list(new QueryWrapper<WareSkuEntity>().eq("sku_id", skuId));
+        return Resp.ok(wareSkuEntities);
+    }
     /**
      * 列表
      */

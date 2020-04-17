@@ -18,4 +18,6 @@ mybatis-plus:
       id-type: auto
   mapper-locations: classpath:mapper/pms/**/*.xml
 
-
+item:
+  rabbitmq:
+    exchange: GMALL-PMS-EXCHANGE

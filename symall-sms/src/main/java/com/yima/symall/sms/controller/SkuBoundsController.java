@@ -1,20 +1,20 @@
 package com.yima.symall.sms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.yima.core.bean.PageVo;
 import com.yima.core.bean.QueryCondition;
 import com.yima.core.bean.Resp;
+import com.yima.symall.sms.entity.SkuBoundsEntity;
+import com.yima.symall.sms.service.SkuBoundsService;
+import com.yima.symall.sms.vo.SaleVO;
+import com.yima.symall.sms.vo.SkuSaleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.yima.symall.sms.entity.SkuBoundsEntity;
-import com.yima.symall.sms.service.SkuBoundsService;
+import java.util.Arrays;
+import java.util.List;
 
 
 
@@ -33,6 +33,19 @@ public class SkuBoundsController {
     @Autowired
     private SkuBoundsService skuBoundsService;
 
+    @GetMapping("{skuId}")
+    public Resp<List<SaleVO>> querySalesBySkuId(@PathVariable("skuId")Long skuId){
+
+        List<SaleVO> saleVOS = this.skuBoundsService.querySalesBySkuId(skuId);
+        return Resp.ok(saleVOS);
+    }
+
+    @PostMapping("sku/sale/save")
+    public Resp<Object> saveSale(@RequestBody SkuSaleVO skuSaleVO){
+
+        skuBoundsService.saveSale(skuSaleVO);
+        return Resp.ok(null);
+    }
     /**
      * 列表
      */

@@ -12,6 +12,11 @@
     <modules>
         <module>symall-core</module>
         <module>symall-admin</module>
+        <module>symall-pms-interface</module>
+        <module>symall-oms-interface</module>
+        <module>symall-sms-interface</module>
+        <module>symall-ums-interface</module>
+        <module>symall-wms-interface</module>
     </modules>
 
 </project>
